@@ -1,4 +1,4 @@
-# y
+# vue-shop
 
 > A Vue.js project
 
