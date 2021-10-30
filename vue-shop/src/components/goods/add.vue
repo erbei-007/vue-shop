@@ -59,9 +59,8 @@
                     </el-tab-pane>
                     <el-tab-pane label="商品图片" name="3">
                         <!-- antion 图片要上传到的后台api地址 -->
-                        <el-upload action="http://shop.zzp.world/api/private/v1/upload" :on-preview="handlePreview"
-                            :on-remove="handleRemove" list-type="picture" :headers="headerObj"
-                            :on-success=handleSuccess>
+                        <el-upload :action="uploadURL" :on-preview="handlePreview" :on-remove="handleRemove"
+                            list-type="picture" :headers="headerObj" :on-success=handleSuccess>
                             <el-button size="small" type="primary">点击上传</el-button>
                         </el-upload>
                     </el-tab-pane>
@@ -132,6 +131,7 @@
                 previewPath: '',
                 //图片预览对话框
                 previewVisible: false,
+                uploadURL: 'http://shop.zzp.world/api/private/v1/upload'
             }
         },
         methods: {
@@ -175,9 +175,9 @@
             },
             // 处理图片预览效果
             handlePreview(file) {
-                this.previewPath = file.response.data.url;
+                this.previewPath = 'http://shop.zzp.world/' + file.response.data.tmp_path;
                 this.previewVisible = true;
-                //console.log(file);
+                console.log(file);
             },
             //处理图片移除
             handleRemove(file) {
